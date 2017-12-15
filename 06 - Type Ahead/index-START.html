@@ -37,13 +37,13 @@ function numberWithCommas(number) {
 
 function displayMatches() {
   const matchArray = findMatches(this.value, cities)
-  console.log(matchArray)
   const html = matchArray.map(place => {
     // select items for additional highlighting (added by css class)
     const regex = new RegExp(this.value, 'gi')
     const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
     const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`)
     const population = numberWithCommas(place.population)
+
     return `
       <li>
         <span class="name">${cityName}, ${stateName} </span>
@@ -51,7 +51,8 @@ function displayMatches() {
       </li>
     `
   }).join('');
-  suggestions.innerHTML = html
+  // set our result to the list of suggestions
+  suggestions.innerHTML = html;
 }
 
 const searchInput = document.querySelector('.search');
