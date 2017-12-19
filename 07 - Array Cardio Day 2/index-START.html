@@ -49,13 +49,13 @@
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+
     console.log('comments before delete: ', comments)
     const removeComment = id => {
       const index = comments.findIndex(comment => {
         return comment.id === id;
       })
-      console.log(index)
-
+      
       return [...comments.slice(0, index),
               ...comments.slice(index + 1)
               ];
