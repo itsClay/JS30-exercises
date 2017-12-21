@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+  <p onClick="makeGreen()" class="super">×BREAK×DOWN×</p>
 
   <script>
     const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
@@ -18,29 +18,52 @@
     }
 
     // Regular
-
+    console.log('hello')
     // Interpolated
-
+    console.log('Hello I am a %s string', 'SUPER')
+    console.log(`variable is ${dogs}`)
     // Styled
-
+    console.log('%c super text', 'font-weight: 700;')
     // warning!
-
+    console.warn('AHHH')
     // Error :|
-
+    console.error('ERROR, ERROR')
     // Info
-
+    console.info('Crocodiles are scary')
     // Testing
-
+    console.assert(1 === 2, '1 is not 2')
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('ouch'), 'p lacking and ouch')
     // clearing
-
+    console.clear()
     // Viewing DOM Elements
-
+    console.dir(p)
     // Grouping together
-
+    dogs.forEach(dog => {
+      // can also start with console.groupCollapsed()
+      console.group(`${dog.name}`)
+      console.log(`This is ${dog.name}`)
+      console.log(`${dog.name} is ${dog.age} years old`)
+      console.groupEnd(`${dog.name}`)
+    })
     // counting
-
+    console.count('Clay')
+    console.count('Clay')
+    console.count('Clay')
+    console.count('Clay')
+    console.count('Clay')
     // timing
+    console.time('fetching data')
+    fetch('https://api.github.com/users/itsClay')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data')
+        console.log(data)
+      });
+    // similar to performance.now
 
+    // table
+    console.table(dogs)
   </script>
 </body>
 </html>
