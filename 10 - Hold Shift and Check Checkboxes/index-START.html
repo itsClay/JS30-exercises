@@ -105,7 +105,7 @@ const checkboxes = document.querySelectorAll('.inbox input[type=checkbox]')
 let lastChecked;
 
 function handleCheck(e) {
-  // console.log(e)
+  // flag to know when we have hit boxes between a checked and currently clicked
   let inBetween = false;
   // user is holding down shift
   // AND see that they are checking 
@@ -113,7 +113,6 @@ function handleCheck(e) {
     checkboxes.forEach(checkbox => {
       if(checkbox === this || checkbox === lastChecked) {
         inBetween = !inBetween;
-        console.log('starting to check in between')
       }
       if(inBetween) {
         checkbox.checked = true;
@@ -121,6 +120,7 @@ function handleCheck(e) {
       console.log(checkbox)
     })
   }
+  // reset 
   lastChecked = this
 }
 
