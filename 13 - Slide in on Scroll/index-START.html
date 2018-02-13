@@ -58,6 +58,33 @@
       };
     }
 
+    const sliderImages = document.querySelectorAll('.slide-in')
+
+    function checkSlide(e) {
+      // console.count(e)
+      // console.log(window.innerHeight)
+      sliderImages.forEach((img) => {
+        // calculate the value of scoll height to trigger the class change
+        // pixel level @ middle of image
+        const slideInAt = (window.scrollY + window.innerHeight) - img.height / 2
+        console.log('img mid', slideInAt)
+        // pixel level @bottom of the image
+        const imageBottom = img.offsetTop + img.height
+        console.log('img bottom', imageBottom)
+
+        const isHalfShown = slideInAt > img.offsetTop
+        const isNotScrolledPast = window.scrollY < imageBottom
+
+        if (isHalfShown && isNotScrolledPast) {
+          img.classList.add('active')
+        } else {
+          img.classList.remove('active')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', debounce(checkSlide))
+
   </script>
 
   <style>
