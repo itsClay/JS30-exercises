@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+  <section class="doing">
+       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, doloribus magnam quisquam delectus laborum dignissimos
+      aut accusantium esse dolores molestiae ipsa sed veniam. Obcaecati debitis voluptates perspiciatis ipsa aliquam error.
+  </section>
+  <section class="that">
+       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, doloribus magnam quisquam delectus laborum dignissimos
+      aut accusantium esse dolores molestiae ipsa sed veniam. Obcaecati debitis voluptates perspiciatis ipsa aliquam error.
+  </section>
+  <section class="thing">
+       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, doloribus magnam quisquam delectus laborum dignissimos
+      aut accusantium esse dolores molestiae ipsa sed veniam. Obcaecati debitis voluptates perspiciatis ipsa aliquam error.
+  </section>
+  <script>
+    const thing = document.querySelector('.thing')
+    console.log(thing)
+    console.log(thing.__proto__)
+    console.log('offsetTop', thing.offsetTop)
+    console.log('offsetWidth', thing.offsetWidth)
+
+    console.log(window.scrollY)
+    
+  </script>
+</body>
+<footer>
+
+</footer>
+</html>
