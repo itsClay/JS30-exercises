@@ -23,13 +23,60 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <div>
+      <button>Check All</button>
+      <button>Un-check All</button>
+    </div>
   </div>
 
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
+  const items = JSON.parse(localStorage.getItem('items')) || [];
 
+  function addItem(e) {
+    e.preventDefault();
+    const text = (this.querySelector('[name=item]')).value
+    const item = {
+      text,
+      done: false
+    }
+    items.push(item)
+    populateList(items, itemsList)
+    localStorage.setItem('items', JSON.stringify(items))
+    this.reset()
+  }
+
+  function populateList(plates = [], platesList) {
+    // take in the args to make this function more useful
+    platesList.innerHTML = plates.map((plate, i) => {
+      // re creating entire list each time(react and angular is great for speading up this)
+      return `
+        <li>
+          <input type="checkbox" id=item${i} data-index=${i} ${plate.done ? 'checked' : ''}/>
+          <label for="item${i}">${plate.text}</label>
+        </li>
+      `;
+    }).join('');
+  }
+
+  function toggleDone(e) {
+    // break any other triggers if user misses.
+    if(!e.target.matches('input')) return;
+    const el = e.target
+    const idx = el.dataset.index
+    items[idx].done = !items[idx].done
+    localStorage.setItem('items', JSON.stringify(items))
+    populateList(items, itemsList)
+  }
+
+  function toggleAll(e) {
+
+  }
+
+  addItems.addEventListener('submit', addItem)
+  itemsList.addEventListener('click', toggleDone)
+  populateList(items, itemsList)
 </script>
 
 
