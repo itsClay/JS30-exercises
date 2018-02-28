@@ -45,7 +45,32 @@
 
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
-
+function strip(bandName) {
+  return bandName.replace(/^(a |the |an )/i, '').trim()
+}
+const sortedBands = bands.sort((a, b) => { 
+  // implementation without RegEx if necessary, otherwise use helper function strip
+  // const articles = {
+  //   'The': true,
+  //   'the': true,
+  //   'A': true,
+  //   'a': true,
+  //   'An': true,
+  //   'an': true,
+  // }
+  // let possibleArticle1 = a.split(' ')[0]
+  // let possibleArticle2 = b.split(' ')[0]
+  // if (articles[possibleArticle1]) {
+  //   a = a.split(' ')[1]
+  // }
+  // if (articles[possibleArticle2]) {
+  //   b = b.split(' ')[1]
+  // }
+  return strip(a) > strip(b) ? 1 : -1
+})
+console.log(bands)
+const bandsList = document.querySelector('#bands')
+bandsList.innerHTML = sortedBands.map((band) => `<li>${band}</li>`).join('')
 
 </script>
 
