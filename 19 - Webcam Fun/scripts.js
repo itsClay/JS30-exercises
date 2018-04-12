@@ -7,7 +7,7 @@ const snap = document.querySelector('.snap');
 function getVideo() {
   navigator.mediaDevices.getUserMedia({video: true, audio:false})
     .then(localMediaStream => {
-      // console.log(localMediaStream)
+      console.log(localMediaStream)
       try {
         video.srcObject = localMediaStream
       } catch (err) {
@@ -24,7 +24,7 @@ function getVideo() {
 function paintToCanvas() {
   const width = video.videoWidth
   const height = video.videoHeight
-  console.log(width, height)
+  // console.log(width, height)
   canvas.height = height
   canvas.width = width
 
@@ -38,8 +38,14 @@ function takePhoto() {
   snap.currentTime = 0
   snap.play()
 
-  // take data out of the canvas
-  const data = canvas.toDataUrl('image/jpeg')
+  // take data out of the canvas and generate a downloadable link
+  const data = canvas.toDataURL('image/jpeg')
+  console.log(data)
+  const link = document.createElement('a')
+  link.href = data
+  link.setAttribute('download', 'handsome')
+  link.innerHTML = `<img src="${data}" alt="" />`
+  strip.insertBefore(link, strip.firstChild)
 }
 
 getVideo()
